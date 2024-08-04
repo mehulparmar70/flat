@@ -471,8 +471,11 @@ function saveData(event) {
       contentType: false,
       success: function(response) {
           // Handle success
+          console.log(response);
+        
           console.log('Form submitted successfully.');
           $('#ajaxModal').css('display', 'none'); // Close the modal
+          location.reload(); 
           // Optionally, update the content on the main page if needed
       },
       error: function(jqXHR, textStatus, errorThrown) {

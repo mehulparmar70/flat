@@ -133,13 +133,14 @@ class PageController extends Controller
             $pageEditor->status = 1;
             $save = $pageEditor->save();
             if($save){
+             
                 if ($request->close == "1") {
                     $pageType = $request->type;
                     $pos = strpos($pageType, '_');
                     $pageType = substr($pageType, 0, $pos === false ? strlen($pageType) : $pos);
                     session()->put('success',$pageType.' Details Updated...');
                     // return(redirect(route('admin.close')));
-                    return json_encode('sucess');
+                    return response()->json(['success' => true, 'message' => $message]);
                 } else {
                     // exit();
                     return back()->with('success', $request->type.' Details Updated...');
@@ -177,7 +178,7 @@ class PageController extends Controller
                     $pageType = substr($pageType, 0, $pos === false ? strlen($pageType) : $pos);
                     session()->put('success',$pageType.' Details Added...');
                     // return(redirect(route('admin.close')));
-                    return json_encode('sucess');
+                    return response()->json(['success' => true, 'message' => $message]);
                 } else {
                     return back()->with('success', $request->type.' Details Added...');
                 }

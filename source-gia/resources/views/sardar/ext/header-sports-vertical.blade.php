@@ -88,6 +88,7 @@ function getOnscreenUrl(url){
                 <li>
                     <a href="#">Add New</a>
                     <ul>
+                        <li><a href=""onclick="getOnscreenUrl('{{route('admin.index')}}/category/create?type=main_category&onscreenCms=true'); return false;">Page</a></li> 
                         <li><a href=""onclick="getOnscreenUrl('{{route('admin.index')}}/category/create?type=main_category&onscreenCms=true'); return false;">Main Category</a></li> 
                         <li><a href=""onclick="getOnscreenUrl('{{route('admin.index')}}/category/create?type=sub_category&onscreenCms=true'); return false;">Sub Category</a></li> 
                         <li><a href=""onclick="getOnscreenUrl('{{route('admin.index')}}/photo?page=list&onscreenCms=true'); return false;">Manage Photos</a></li> 
