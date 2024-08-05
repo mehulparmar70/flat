@@ -84,9 +84,10 @@ function getOnscreenUrl(url){
           <div class="navbar">
             <ul>
               
-                <li><a href="{{route('admin.index')}}" target="_blank" ><i class="fa fa-home "></i>  Go To Admin</a></li>
+                <!-- <li><a href="{{route('admin.index')}}" target="_blank" ><i class="fa fa-home "></i>  Go To Admin</a></li> -->
+                 <li> <a href="#">Add New</a></li>
                 <li>
-                    <a href="#">Add New</a>
+                    <!-- <a href="#">Add New</a> -->
                     <ul>
                         <li><a href=""onclick="getOnscreenUrl('{{route('admin.index')}}/category/create?type=main_category&onscreenCms=true'); return false;">Main Category</a></li> 
                         <li><a href=""onclick="getOnscreenUrl('{{route('admin.index')}}/category/create?type=sub_category&onscreenCms=true'); return false;">Sub Category</a></li> 
