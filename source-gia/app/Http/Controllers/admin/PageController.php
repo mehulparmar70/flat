@@ -19,6 +19,7 @@ class PageController extends Controller
         $data = [
             'pageData' =>  Pages::where('type', 'about_page')->first(),
         ];
+        
         return view('adm.pages.home-editor.about-page', $data);
     }
 

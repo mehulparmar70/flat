@@ -92,6 +92,7 @@ class HomeController extends Controller
 
     public function index()
     {
+        
         $data = [
             'criteriaMetas' => $this->criteriaMetas,
             'videos' =>  Video::where(['status' => 1])->orderBy('item_no')->get(),
@@ -131,7 +132,7 @@ class HomeController extends Controller
             'footerCaseStudies' =>   $this->footerCaseStudies,
 
         ];
-
+        
         return response()->view('sardar.index', $data, 200)->header('Cache-Control:public', 'max-age=31536000');
 
     }
@@ -221,8 +222,9 @@ class HomeController extends Controller
         return view('sardar.product-internal', $data);
     }
     
-    public function product_internal($slug)
+    public function product_internal(Request $slug)
     {
+        
         //Session::forget('homePageCatId');
         $current_cat = Category::where(['slug' => $slug, 'status' => 1])->whereNotIn('parent_id', [0])->first();
 

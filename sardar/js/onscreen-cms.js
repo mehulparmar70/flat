@@ -450,6 +450,8 @@ function popupmenu(link,toolbar, location,left,width, height)
         // Load the content into the modal
         $('#modalBodyContent').html(data);
         $('#ajaxModal').css('display', 'block');
+        $('#ajaxModal').css('position', 'absolute');
+        $('#ajaxModal').css('z-index', '10000');
         $('.preloader').css('display', 'none');
     },
     error: function(jqXHR, textStatus, errorThrown) {

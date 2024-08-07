@@ -1,4 +1,4 @@
-@extends('adm.layout.admin-index-popup')
+<!-- 
 @section('title','About Page Editor')
 
 @section('toast')
@@ -27,7 +27,7 @@ $(".page a").addClass( "active-menu");
 @endsection
 
 @section('content')
-@include('adm.widget.table-search-draggable')
+
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -118,4 +118,24 @@ $(".page a").addClass( "active-menu");
     </section>
   </div>
 
-  @endsection
+  @endsection -->
+
+
+  <div id="ajaxModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBodyContent">
+        <!-- Content will be loaded here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

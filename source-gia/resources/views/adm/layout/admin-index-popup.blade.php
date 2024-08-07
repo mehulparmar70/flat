@@ -19,7 +19,7 @@
   <!-- JQVMap -->
   <link rel="stylesheet" href="{{url('adm')}}/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{url('adm')}}/dist/css/adminlte.min.css">
+  <!-- <link rel="stylesheet" href="{{url('adm')}}/dist/css/adminlte.min.css"> -->
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{url('adm')}}/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
