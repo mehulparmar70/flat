@@ -86,7 +86,7 @@ class ClientController extends Controller
                     $media->image_type = 'clients';
                     $media->image_alt = $request->alt[$index];
                     $media->image_title = $request->title[$index];
-                    $image_name2 = uploadMultipleImageThumb($imageData);
+                    $image_name2 = $imageData;
                     $media->image = $image_name2;
                     $save = $media->save();
                 }

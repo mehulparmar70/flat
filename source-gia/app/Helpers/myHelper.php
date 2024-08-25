@@ -15,10 +15,7 @@ function getMaxUploadSide(){
     $maxSize = ini_get('upload_max_filesize');
     return substr($maxSize, 0, -1) * 1000 -500;
 }
-function tinyPngKey(){
-    $data = SocialMedia::first();
-    return $data->tinypng;
-}
+
 function deleteSubCategoryImages($id){
     $medias = Media::where('media_id', $id)->get();
     foreach($medias as $media){
@@ -66,17 +63,6 @@ function uploadAnyFile($request, $name, $saveName = null, $path = null){
 
 }
 
-function webpConverterHelper($request, $path, $name){
-    // dd($name);
-    $input['imagename'] = time().'_'.rand(111,999).'.webp';
-    \Tinify\setKey(tinyPngKey());
-     // original
-     $source = \Tinify\fromFile($request);
-     // $source->toFile($_FILES['image']['name']);
-     $source->toFile($path.$name.'.webp');
-    //  dd($request);
-     return true;
-}
 
 function getCategory($id){
 
@@ -106,110 +92,63 @@ function addEllipsis($string, $length, $end='…')
 }
 // Upload multiple images with thumbnails
 
-function uploadMultipleImageThumb($request){
-    // dd($request);
-    if($request){
-        $image = $request;
-        $input['imagename'] = time().'_'.rand(111,999).'.webp';
+
+
+
+
+// function uploadTinyImageThumb($request){
+//     // dd($request->file('image'));
+
+//     if($request->file('image')){
+//         $image = $request->file('image');
+//         // dd($image);
+//         $input['imagename'] = time().'_'.rand(111,999).'.webp';
         
-       \Tinify\setKey(tinyPngKey());
-
-        $source = \Tinify\fromFile($request->path());
-        $source->toFile("web/media/lg/".$input['imagename']);
+//        \Tinify\setKey(tinyPngKey());
+//         // original
+//         $source = \Tinify\fromFile($_FILES['image']['tmp_name']);
+//         // $source->toFile($_FILES['image']['name']);
+//         $source->toFile("web/media/lg/".$input['imagename']);
+//         // $thumb = \Tinify\fromFile($_FILES['image']['tmp_name']);
         
-        $thumbIcon = $source->resize(array(
-            "method" => "fit",
-            "width" => 60,
-            "height" => 60
-        ));
-        $thumbIcon->toFile("web/media/icon/".$input['imagename']);
+//         // icon
+//         $thumbIcon = $source->resize(array(
+//             "method" => "fit",
+//             "width" => 60,
+//             "height" => 60
+//         ));
+//         $thumbIcon->toFile("web/media/icon/".$input['imagename']);
 
-        // xs
-        $thumbIcon = $source->resize(array(
-            "method" => "fit",
-            "width" => 150,
-            "height" => 150
-        ));
-        $thumbIcon->toFile("web/media/xs/".$input['imagename']);
+//         // xs
+//         $thumbIcon = $source->resize(array(
+//             "method" => "fit",
+//             "width" => 150,
+//             "height" => 150
+//         ));
+//         $thumbIcon->toFile("web/media/xs/".$input['imagename']);
 
-        // sm
-        $thumbIcon = $source->resize(array(
-            "method" => "fit",
-            "width" => 150,
-            "height" => 150
-        ));
-        $thumbIcon->toFile("web/media/sm/".$input['imagename']);
+//         // sm
+//         $thumbIcon = $source->resize(array(
+//             "method" => "fit",
+//             "width" => 150,
+//             "height" => 150
+//         ));
+//         $thumbIcon->toFile("web/media/sm/".$input['imagename']);
 
-        // md
-        $thumbIcon = $source->resize(array(
-            "method" => "fit",
-            "width" => 600,
-            "height" => 600
-        ));
-        $thumbIcon->toFile("web/media/md/".$input['imagename']);
-        $image_name = $input['imagename'];
+//         // md
+//         $thumbIcon = $source->resize(array(
+//             "method" => "fit",
+//             "width" => 600,
+//             "height" => 600
+//         ));
+//         $thumbIcon->toFile("web/media/md/".$input['imagename']);
+//         $image_name = $input['imagename'];
 
-    }else{
-        $image_name = null;
-    }
-    return $image_name;
-}
-
-
-
-function uploadTinyImageThumb($request){
-    // dd($request->file('image'));
-
-    if($request->file('image')){
-        $image = $request->file('image');
-        // dd($image);
-        $input['imagename'] = time().'_'.rand(111,999).'.webp';
-        
-       \Tinify\setKey(tinyPngKey());
-        // original
-        $source = \Tinify\fromFile($_FILES['image']['tmp_name']);
-        // $source->toFile($_FILES['image']['name']);
-        $source->toFile("web/media/lg/".$input['imagename']);
-        // $thumb = \Tinify\fromFile($_FILES['image']['tmp_name']);
-        
-        // icon
-        $thumbIcon = $source->resize(array(
-            "method" => "fit",
-            "width" => 60,
-            "height" => 60
-        ));
-        $thumbIcon->toFile("web/media/icon/".$input['imagename']);
-
-        // xs
-        $thumbIcon = $source->resize(array(
-            "method" => "fit",
-            "width" => 150,
-            "height" => 150
-        ));
-        $thumbIcon->toFile("web/media/xs/".$input['imagename']);
-
-        // sm
-        $thumbIcon = $source->resize(array(
-            "method" => "fit",
-            "width" => 150,
-            "height" => 150
-        ));
-        $thumbIcon->toFile("web/media/sm/".$input['imagename']);
-
-        // md
-        $thumbIcon = $source->resize(array(
-            "method" => "fit",
-            "width" => 600,
-            "height" => 600
-        ));
-        $thumbIcon->toFile("web/media/md/".$input['imagename']);
-        $image_name = $input['imagename'];
-
-    }else{
-        $image_name = null;
-    }
-    return $image_name;
-}
+//     }else{
+//         $image_name = null;
+//     }
+//     return $image_name;
+// }
 
 function uploadImageThumb($request){
 

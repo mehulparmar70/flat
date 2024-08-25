@@ -59,7 +59,7 @@
                     data-delete-link="{{route('admin.index')}}/award/delete/{{ $clientList['id']}}"
                     @endif></div>
                     @endif
-                    <img src="{{url('web')}}/media/sm/{{$clientList['image']}}" alt="{{$clientList['name']}}" data-fancybox="gallery" href="{{url('web')}}/media/sm/{{$clientList['image']}}"/>
+                    <img src="{{url('web')}}/images/{{$clientList['image']}}" alt="{{$clientList['name']}}" data-fancybox="gallery" href="{{url('web')}}/images/{{$clientList['image']}}"/>
                   </a>
                 @endforeach
               @endforeach

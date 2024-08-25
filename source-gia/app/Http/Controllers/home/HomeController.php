@@ -228,14 +228,16 @@ class HomeController extends Controller
         //Session::forget('homePageCatId');
         $current_cat = Category::where(['slug' => $slug, 'status' => 1])->whereNotIn('parent_id', [0])->first();
 
+        // dd($current_cat);  
+
         if(isset($current_cat)){
             // dd($current_cat);
             if(!isset($current_cat)){
-                return redirect(url('custom-industrial-inflatable-products'));
+                // return redirect(url('custom-industrial-inflatable-products'));
             }
             
             if($current_cat->status == 0){
-                return redirect(url('custom-industrial-inflatable-products'));
+                // return redirect(url('custom-industrial-inflatable-products'));
             }
             $mainCategory = Category::find($current_cat->parent_id);
             $subCategory = Category::where(['parent_id' => $mainCategory->id, 'status' => 1])->get();
@@ -293,10 +295,17 @@ class HomeController extends Controller
         $current_cat = Category::where(['slug' => $slug, 'status' => 1])->first();
         // dd($current_cat);
         if(!isset($current_cat)){
-            return redirect(url('custom-industrial-inflatable-products'));
+            if($current_cat==false)
+            {
+                return redirect(url('/'));
+            }
+            else{
+                return redirect(url('custom-industrial-inflatable-products'));
+            }
+            
         }
         if($current_cat->status == 0){
-            return redirect(url('custom-industrial-inflatable-products'));
+            return redirect(url(''));
         }
 
         $criteriaData = Criteria::where('slug', $slug)->first();

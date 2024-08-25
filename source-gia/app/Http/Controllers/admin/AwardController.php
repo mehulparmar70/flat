@@ -127,39 +127,44 @@ class AwardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->input());
-        
-        if($request->status == 'on'){
-            $status = 1;
-        }else{
-            $status = 0;
-        }
-
-        if($request->file('image')){
-            $image_name = uploadTinyImageThumb($request);
-            deleteBulkImage($request->old_image);
-        }else{
+        // Check the status from the request
+        $status = $request->status == 'on' ? 1 : 0;
+    
+        // Handle image upload
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            $image_name = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('web/images'), $image_name);  // Save the image to the 'images' directory
+    
+            // Delete the old image if it exists
+            if ($request->old_image && file_exists(public_path('images/' . $request->old_image))) {
+                unlink(public_path('web/images/' . $request->old_image));
+            }
+        } else {
             $image_name = $request->old_image;
         }
+    
+        // Update the award details
         $award = Award::find($id);
         $award->name = $request->name;
-        $award->note  = $request->note ;  
+        $award->note = $request->note;
         $award->image = $image_name;
-        $award->status = $status;     
-          
+        $award->status = $status;
+    
         $save = $award->save();
-
-        if($save){
+    
+        if ($save) {
             if ($request->close == "1") {
-                session()->put('success','Award Updated...');
-                return(redirect(route('admin.close')));
+                session()->put('success', 'Award Updated...');
+                return redirect(route('admin.close'));
             } else {
                 return back()->with('success', 'Award Updated...');
             }
-        }else{
+        } else {
             return back()->with('fail', 'Something went wrong, try again later...');
         }
     }
+    
 
     /**
      * Remove the specified resource from storage.

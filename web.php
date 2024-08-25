@@ -60,9 +60,10 @@ Route::get('/testing-page/create', [testController::class, 'create']);
 
 
 
-Route::get('', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/about', [HomeController::class, 'about'])->name('admin');
+
 
 Route::get('products', [HomeController::class, 'product']);
 Route::get('sitemap.html', [HomeController::class, 'sitemap']);
